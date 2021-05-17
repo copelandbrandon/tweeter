@@ -1,0 +1,12 @@
+.headerImage {
+  display: flex;
+  z-index: 2;
+  height: 500px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: mediumaquamarine;
+  padding-top: 130px;
+  background-image: url("https://www.transparenttextures.com/patterns/az-subtle.png");
+  border-style: solid;
+}

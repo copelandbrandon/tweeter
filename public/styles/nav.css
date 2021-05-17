@@ -1,10 +1,13 @@
 .nav {
   display: flex;
+  z-index: 1;
+  position: fixed;
   justify-content: space-between;
   height: 120px;
   background-color: #4056A1;
   color: #FFFF;
   padding: 1.5em;
+  width: 100%;
 }
 
 .appName {
