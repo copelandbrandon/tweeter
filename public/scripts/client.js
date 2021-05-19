@@ -10,81 +10,90 @@ $(document).ready(function() {
   let createdDate = new Date();
   $(".time-since").html(timeago.format(createdDate));
 
-
-  // Test / driver code (temporary). Eventually will get this from the server.
-  const data = [
-    {
-      "user": {
-        "name": "Newton",
-        "avatars": "https://i.imgur.com/73hZDYK.png"
-        ,
-        "handle": "@SirIsaac"
-      },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1461116232227
-    },
-    {
-      "user": {
-        "name": "Descartes",
-        "avatars": "https://i.imgur.com/nlhLi3I.png",
-        "handle": "@rd" },
-      "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1461113959088
-    }
-  ];
-
+    // example referenced from LHL assignment page for escape function
+  const escape = function (str) {
+    let paragraph = document.createElement("p");
+    paragraph.appendChild(document.createTextNode(str));
+    return paragraph.innerHTML;
+  };
   
+
   const createTweetElement = function(tweet) {
     const $tweet = $(`<article class="tweet-article"></article>`);
 
     const $tweetHeader = $(
       `<header class="tweet-header">
-        <p class="tweet-profile">
-          <i class="far fa-user-circle"></i>
-          ${tweet.user.name}
-        </p>
-        <span class="at-username">
-          ${tweet.user.handle}
-        </span>
+      <p class="tweet-profile">
+      <i class="far fa-user-circle"></i>
+      ${tweet.user.name}
+      </p>
+      <span class="at-username">
+      ${tweet.user.handle}
+      </span>
       </header>`
-    );
-    $tweet.append($tweetHeader);
-    
-    const $tweetBody = $(`<p class="tweet-body">${tweet.content.text}</p>`);
-    $tweet.append($tweetBody);
-    
-
-    const $tweetFooter = $(
-      `<footer class="tweet-footer">
+      );
+      $tweet.append($tweetHeader);
+      const $tweetBody = $(`<p class="tweet-body">${escape(tweet.content.text)}</p>`);
+      $tweet.append($tweetBody);
+      
+      
+      const $tweetFooter = $(
+        `<footer class="tweet-footer">
         <span class ="time-since">
-          ${timeago.format(tweet.created_at)}
+        ${timeago.format(tweet.created_at)}
         </span>
         <span class="btns">
-          <i class="fas fa-flag"></i>
-          <i class="fas fa-retweet"></i>
-          <i class="fas fa-heart"></i>
+        <i class="fas fa-flag"></i>
+        <i class="fas fa-retweet"></i>
+        <i class="fas fa-heart"></i>
         </span>
-      </footer>`
-      );
-      
-      $tweet.append($tweetFooter);
-      
-      return $tweet;
-    
-    };
+        </footer>`
+        );
+        
+        $tweet.append($tweetFooter);
+        
+        return $tweet;
+        
+  };
       
   const renderTweets = function(tweets) {
     $(tweets).each( function(tweet) {
       let $composedTweet = createTweetElement(tweets[tweet]);
-      return $(".tweet-list").append($composedTweet);
+      return $(".tweet-list").prepend($composedTweet);
     });
   };
-    
-  renderTweets(data);
+      
+  $("form").submit(function(event) {
+    event.preventDefault();
+    let inputData = $("textarea").serialize();
+    let charCount = $(".counter").val();
+    console.log("counter: ", charCount);
 
+    if (inputData === "text=" || inputData === null) {
+      return alert("Cannot submit an empty tweet!");
+    } else if (charCount <= -1) {
+      return alert("Too many characters to submit!");
+    }
+
+    $.post("/tweets", inputData)
+      .then(function() {
+        $.get("http://localhost:8080/tweets", null, function(tweets) {
+          const newTweet = tweets[tweets.length - 1];
+          renderTweets( [newTweet] );
+          return newTweet;
+        })
+      });
+
+    
+  });
+
+  const loadTweets = function() {
+    $.get("http://localhost:8080/tweets", null, function(tweets) {
+      renderTweets(tweets);
+    });
+  };
+
+  loadTweets();
+      
       
 });
