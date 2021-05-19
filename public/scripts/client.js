@@ -10,8 +10,8 @@ $(document).ready(function() {
   let createdDate = new Date();
   $(".time-since").html(timeago.format(createdDate));
 
-    // example referenced from LHL assignment page for escape function
-  const escape = function (str) {
+  // example referenced from LHL assignment page for escape function
+  const escape = function(str) {
     let paragraph = document.createElement("p");
     paragraph.appendChild(document.createTextNode(str));
     return paragraph.innerHTML;
@@ -31,33 +31,33 @@ $(document).ready(function() {
       ${tweet.user.handle}
       </span>
       </header>`
-      );
-      $tweet.append($tweetHeader);
-      const $tweetBody = $(`<p class="tweet-body">${escape(tweet.content.text)}</p>`);
-      $tweet.append($tweetBody);
+    );
+    $tweet.append($tweetHeader);
+    const $tweetBody = $(`<p class="tweet-body">${escape(tweet.content.text)}</p>`);
+    $tweet.append($tweetBody);
       
       
-      const $tweetFooter = $(
-        `<footer class="tweet-footer">
-        <span class ="time-since">
-        ${timeago.format(tweet.created_at)}
-        </span>
-        <span class="btns">
-        <i class="fas fa-flag"></i>
-        <i class="fas fa-retweet"></i>
-        <i class="fas fa-heart"></i>
-        </span>
-        </footer>`
-        );
+    const $tweetFooter = $(
+      `<footer class="tweet-footer">
+      <span class ="time-since">
+      ${timeago.format(tweet.created_at)}
+      </span>
+      <span class="btns">
+      <i class="fas fa-flag"></i>
+      <i class="fas fa-retweet"></i>
+      <i class="fas fa-heart"></i>
+      </span>
+      </footer>`
+    );
         
-        $tweet.append($tweetFooter);
+    $tweet.append($tweetFooter);
         
-        return $tweet;
+    return $tweet;
         
   };
       
   const renderTweets = function(tweets) {
-    $(tweets).each( function(tweet) {
+    $(tweets).each(function(tweet) {
       let $composedTweet = createTweetElement(tweets[tweet]);
       return $(".tweet-list").prepend($composedTweet);
     });
@@ -82,8 +82,8 @@ $(document).ready(function() {
       .then(function() {
         $.get("http://localhost:8080/tweets", null, function(tweets) {
           const newTweet = tweets[tweets.length - 1];
-          renderTweets( [newTweet] );
-        })
+          renderTweets([newTweet]);
+        });
       });
 
     
