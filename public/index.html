@@ -55,34 +55,34 @@
 
     <!-- Page-specific (main) content here -->
     <main class="container">
-      <section class="new-tweet">
-      <h2>Compose Tweet</h2>
-      <form method="POST" action="/tweets">
-        <label for="tweet-text">What are you humming about?</label>
-        <textarea class="tweet-text" name="text" id="tweet-text"></textarea>
-        <div class="lowerElements">
-          <button class="tweet-btn" type="submit">Tweet</button>
-          <output name="counter" class="counter" for="tweet-text">140</output>
-        </div>
-      </form>
-    </section>
-    <section class="tweet-list">
-      <article class="tweet-article">
-        <header class="tweet-header">
-          <p class="tweet-profile"><i class="far fa-user-circle"></i>  displayName</p>
-           <span class="at-username">@username</span>
-          </header>
-        <p class="tweet-body">This is where the body of the tweet will go</p>
-        <footer class = "tweet-footer">
-          <span class ="time-since"></span>
-          <span class="btns">
-            <i class="fas fa-flag"></i>
-            <i class="fas fa-retweet"></i>
-            <i class="fas fa-heart"></i>
-          </span>
-        </footer>
-      </article>
-    </section>
+        <section class="new-tweet">
+        <h2>Compose Tweet</h2>
+        <form method="POST" action="/tweets">
+          <label for="tweet-text">What are you humming about?</label>
+          <textarea class="tweet-text" name="text" id="tweet-text"></textarea>
+          <div class="lowerElements">
+            <button class="tweet-btn" type="submit">Tweet</button>
+            <output name="counter" class="counter" for="tweet-text">140</output>
+          </div>
+        </form>
+      </section>
+      <section class="tweet-list">
+        <article class="tweet-article">
+          <header class="tweet-header">
+            <p class="tweet-profile"><i class="far fa-user-circle"></i>  displayName</p>
+            <span class="at-username">@username</span>
+            </header>
+          <p class="tweet-body">This is where the body of the tweet will go</p>
+          <footer class = "tweet-footer">
+            <span class ="time-since"></span>
+            <span class="btns">
+              <i class="fas fa-flag"></i>
+              <i class="fas fa-retweet"></i>
+              <i class="fas fa-heart"></i>
+            </span>
+          </footer>
+        </article>
+      </section>
     </main>
   </body>
 </html>

@@ -1,11 +1,12 @@
 .tweet-list {
   display: flex;
-  border: 3px solid black;
+  flex-direction: column;
   width: 100%;
   margin-top: 10px;
+  height: 1000px;
 }
 
-.tweet-list:hover {
+.tweet-article:hover {
   box-shadow: darkgray 5px 5px;
 }
 
@@ -32,7 +33,11 @@
 }
 
 .tweet-article {
-  width: 100%
+  display: flex;
+  border: 3px solid black;
+  width: 100%;
+  margin-top: 10px;
+  flex-direction: column;
 }
 
 .tweet-body {
