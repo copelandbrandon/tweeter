@@ -59,6 +59,7 @@
         <h2>Compose Tweet</h2>
         <form method="POST" action="/tweets">
           <label for="tweet-text">What are you humming about?</label>
+          <span class="error"><i class="fas fa-exclamation-triangle"></i><span class="error-message"></span><i class="fas fa-exclamation-triangle"></i></span>
           <textarea class="tweet-text" name="text" id="tweet-text"></textarea>
           <div class="lowerElements">
             <button class="tweet-btn" type="submit">Tweet</button>

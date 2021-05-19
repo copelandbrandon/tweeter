@@ -6,7 +6,7 @@
 
 
 $(document).ready(function() {
-
+  $(".error").hide();
   let createdDate = new Date();
   $(".time-since").html(timeago.format(createdDate));
 
@@ -68,11 +68,14 @@ $(document).ready(function() {
     let inputData = $("textarea").serialize();
     let charCount = $(".counter").val();
     console.log("counter: ", charCount);
-
+    $(".error").hide();
     if (inputData === "text=" || inputData === null) {
-      return alert("Cannot submit an empty tweet!");
+      $(".error").show();
+      return $(".error-message").html("<p>Cannot submit an empty tweet!</p>");
+
     } else if (charCount <= -1) {
-      return alert("Too many characters to submit!");
+      $(".error").show();
+      return $(".error-message").html("<p>Too many characters to submit!</p>");
     }
 
     $.post("/tweets", inputData)
@@ -80,7 +83,6 @@ $(document).ready(function() {
         $.get("http://localhost:8080/tweets", null, function(tweets) {
           const newTweet = tweets[tweets.length - 1];
           renderTweets( [newTweet] );
-          return newTweet;
         })
       });
 

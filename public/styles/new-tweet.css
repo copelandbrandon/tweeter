@@ -43,3 +43,12 @@
 .negative {
   color: red;
 }
+
+.error {
+  color: red;
+  border: 3px solid red;
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  align-items: center;
+}
