@@ -17,7 +17,7 @@ $(document).ready(function() {
     return paragraph.innerHTML;
   };
   
-//forms html from tweet database for an individual tweet
+  //forms html from tweet database for an individual tweet
   const createTweetElement = function(tweet) {
     const $tweet = $(`<article class="composed-article"></article>`);
 
@@ -65,7 +65,7 @@ $(document).ready(function() {
   };
 
 
-  //ajax post request 
+  //ajax post request
   $("form").submit(function(event) {
     event.preventDefault();
     let inputData = $(this).children("textarea").serialize();
@@ -90,12 +90,12 @@ $(document).ready(function() {
         return newTweet;
       }).then(newTweet => {
         renderTweets([newTweet]);
-      }) 
+      });
     $(this).children("textarea").val('');
     $(this).children(".lowerElements").children(".counter").val(140);
   });
 
-// loads tweet data and calls the render function on all of them
+  // loads tweet data and calls the render function on all of them
   const loadTweets = function() {
     $.get("http://localhost:8080/tweets", null, function(tweets) {
       renderTweets(tweets);
