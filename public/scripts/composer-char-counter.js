@@ -1,6 +1,6 @@
 $(document).ready(function() {
-  console.log("DOM ready!");
   
+  //alters charCount display on input and adds a class if the char count is over 140 to change styling
   $(".tweet-text").on("input", function() {
     let inputLength = $(this).val().length;
     let counter = $(this).parent().children(".lowerElements").children(".counter");
@@ -12,5 +12,5 @@ $(document).ready(function() {
       counter.removeClass(["negative"]);
     }
   });
-  
+
 });

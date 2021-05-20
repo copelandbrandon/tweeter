@@ -52,3 +52,10 @@
   width: 60%;
   align-items: center;
 }
+
+@media only screen and (min-width: 1024px) {
+  .new-tweet {
+    margin-top: 240px;
+    width: 65%;
+  }
+}

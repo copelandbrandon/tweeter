@@ -17,28 +17,28 @@ $(document).ready(function() {
     return paragraph.innerHTML;
   };
   
-
+//forms html from tweet database for an individual tweet
   const createTweetElement = function(tweet) {
-    const $tweet = $(`<article class="tweet-article"></article>`);
+    const $tweet = $(`<article class="composed-article"></article>`);
 
     const $tweetHeader = $(
-      `<header class="tweet-header">
-      <p class="tweet-profile">
+      `<header class="composed-header">
+      <p class="composed-profile">
       <i class="far fa-user-circle"></i>
       ${tweet.user.name}
       </p>
-      <span class="at-username">
+      <span class="composed-username">
       ${tweet.user.handle}
       </span>
       </header>`
     );
     $tweet.append($tweetHeader);
-    const $tweetBody = $(`<p class="tweet-body">${escape(tweet.content.text)}</p>`);
+    const $tweetBody = $(`<p class="composed-body">${escape(tweet.content.text)}</p>`);
     $tweet.append($tweetBody);
       
       
     const $tweetFooter = $(
-      `<footer class="tweet-footer">
+      `<footer class="composed-footer">
       <span class ="time-since">
       ${timeago.format(tweet.created_at)}
       </span>
@@ -55,20 +55,22 @@ $(document).ready(function() {
     return $tweet;
         
   };
-      
+
+  // loops through a list of tweets and feeds individual tweets to createTweetElement
   const renderTweets = function(tweets) {
     $(tweets).each(function(tweet) {
       let $composedTweet = createTweetElement(tweets[tweet]);
       return $(".tweet-list").prepend($composedTweet);
     });
   };
-      
+
+
+  //ajax post request 
   $("form").submit(function(event) {
     event.preventDefault();
     let inputData = $(this).children("textarea").serialize();
     let charCount = $(this).children(".lowerElements").children(".counter").val();
     let error = $(this).children(".error");
-
     error.hide();
     if (inputData === "text=" || inputData === null) {
       error.show();
@@ -89,10 +91,11 @@ $(document).ready(function() {
       }).then(newTweet => {
         renderTweets([newTweet]);
       }) 
-
-    
+    $(this).children("textarea").val('');
+    $(this).children(".lowerElements").children(".counter").val(140);
   });
 
+// loads tweet data and calls the render function on all of them
   const loadTweets = function() {
     $.get("http://localhost:8080/tweets", null, function(tweets) {
       renderTweets(tweets);

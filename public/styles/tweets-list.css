@@ -3,50 +3,49 @@
   flex-direction: column;
   width: 100%;
   margin-top: 10px;
-  height: 1000px;
+  height: auto;
 }
 
-.tweet-article:hover {
+
+.composed-article:hover {
   box-shadow: darkgray 5px 5px;
 }
 
-.tweet-header {
+.composed-article {
+  display: flex;
+  border: 3px solid black;
+  margin-top: 10px;
+  flex-direction: column;
+}
+
+.composed-header {
   font-family: 'sans-serif-pro';
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: baseline;
   flex-direction: row;
-
 }
 
-.at-username {
+.composed-username {
   display: inline;
   justify-content: flex-end;
   margin-right: 10px;
   color: grey;
 }
 
-.tweet-profile {
+.composed-profile {
   display: inline;
   margin-left: 10px;
 }
 
-.tweet-article {
-  display: flex;
-  border: 3px solid black;
-  width: 100%;
-  margin-top: 10px;
-  flex-direction: column;
-}
-
-.tweet-body {
+.composed-body {
   border-bottom: 2px solid black;
   margin-left: 10px;
   margin-right: 10px;
 }
 
-.tweet-footer {
+.composed-footer {
   display: flex;
   justify-content: space-between;
   margin-left: 10px;
@@ -59,14 +58,14 @@
   color: #4056A1;
 }
 
-.fa-flag:hover {
-  color: mediumaquamarine;
-}
-
-.fa-retweet:hover {
-  color: mediumaquamarine;
-}
-
+.fa-flag:hover,
+.fa-retweet:hover,
 .fa-heart:hover {
   color: mediumaquamarine;
+}
+
+@media only screen and (min-width: 1024px) {
+  .tweet-list {
+    width: 65%;
+  }
 }

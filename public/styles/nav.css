@@ -19,3 +19,11 @@
   flex-direction: column;
   align-items: center;
 }
+
+.fa-angle-double-down {
+  color: red;
+}
+
+.write {
+  font-weight: bold;
+}
