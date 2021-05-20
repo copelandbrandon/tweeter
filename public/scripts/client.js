@@ -7,10 +7,12 @@
 
 $(document).ready(function() {
   $(".error").hide();
+
+  //sets date for the example tweet hardcoded into the html which displays at the bottom of the page
   let createdDate = new Date();
   $(".time-since").html(timeago.format(createdDate));
 
-  // example referenced from LHL assignment page for escape function
+  // example referenced from LHL assignment page for escape function, will protect the app from cross site scripting,
   const escape = function(str) {
     let paragraph = document.createElement("p");
     paragraph.appendChild(document.createTextNode(str));
@@ -80,7 +82,7 @@ $(document).ready(function() {
       error.show();
       return $(".error-message").html("<p>Too many characters to submit!</p>");
     }
-
+    //promise used to refetch the tweet posted by the post request
     $.post("/tweets", inputData)
       .then(function() {
         const tweetData = $.get("http://localhost:8080/tweets");
@@ -95,7 +97,7 @@ $(document).ready(function() {
     $(this).children(".lowerElements").children(".counter").val(140);
   });
 
-  // loads tweet data and calls the render function on all of them
+
   const loadTweets = function() {
     $.get("http://localhost:8080/tweets", null, function(tweets) {
       renderTweets(tweets);
