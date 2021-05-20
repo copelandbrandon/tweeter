@@ -80,11 +80,14 @@ $(document).ready(function() {
 
     $.post("/tweets", inputData)
       .then(function() {
-        $.get("http://localhost:8080/tweets", null, function(tweets) {
-          const newTweet = tweets[tweets.length - 1];
-          renderTweets([newTweet]);
-        });
-      });
+        const tweetData = $.get("http://localhost:8080/tweets");
+        return tweetData;
+      }).then(data => {
+        const newTweet = data[data.length - 1];
+        return newTweet;
+      }).then(newTweet => {
+        renderTweets([newTweet]);
+      }) 
 
     
   });
