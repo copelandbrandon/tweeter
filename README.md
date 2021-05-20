@@ -1,7 +1,8 @@
 # Tweeter Project
-## Built as a project for Lighthouse Labs
 
 Tweeter is a simple, single-page Twitter clone.
+
+## Built as a project for Lighthouse Labs
 
 Starter code was provided by Lighthouse Labs to complete this project
 
