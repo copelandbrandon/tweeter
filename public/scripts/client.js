@@ -65,16 +65,17 @@ $(document).ready(function() {
       
   $("form").submit(function(event) {
     event.preventDefault();
-    let inputData = $("textarea").serialize();
-    let charCount = $(".counter").val();
-    console.log("counter: ", charCount);
-    $(".error").hide();
+    let inputData = $(this).children("textarea").serialize();
+    let charCount = $(this).children(".lowerElements").children(".counter").val();
+    let error = $(this).children(".error");
+
+    error.hide();
     if (inputData === "text=" || inputData === null) {
-      $(".error").show();
+      error.show();
       return $(".error-message").html("<p>Cannot submit an empty tweet!</p>");
 
     } else if (charCount <= -1) {
-      $(".error").show();
+      error.show();
       return $(".error-message").html("<p>Too many characters to submit!</p>");
     }
 
