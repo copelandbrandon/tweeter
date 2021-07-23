@@ -6,12 +6,14 @@
 
 
 $(document).ready(function() {
+  console.log('ready!');
   $(".error").hide();
 
   //sets date for the example tweet hardcoded into the html which displays at the bottom of the page
   let createdDate = new Date();
   $(".time-since").html(timeago.format(createdDate));
 
+  $(".newTweet").click(() => $(".new-tweet").toggle(200));
   // example referenced from LHL assignment page for escape function, will protect the app from cross site scripting,
   const escape = function(str) {
     let paragraph = document.createElement("p");
