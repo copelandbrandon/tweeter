@@ -20,7 +20,8 @@ $(document).ready(function() {
     paragraph.appendChild(document.createTextNode(str));
     return paragraph.innerHTML;
   };
-  
+
+  $("#top-btn").click(() => {console.log('reached'); $(window).scrollTop(0)});
   //forms html from tweet database for an individual tweet
   const createTweetElement = function(tweet) {
     const $tweet = $(`<article class="composed-article"></article>`);

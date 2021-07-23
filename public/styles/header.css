@@ -20,3 +20,14 @@
     margin-right: 50px;
   }
 }
+
+.fa-level-up-alt {
+  width: 150px;
+  height: 150px;
+  background-color: mediumaquamarine;
+  border-radius: 75px;
+  border: none;
+  position: fixed;
+  bottom: 200px;
+  right: 100px;
+}
